@@ -40,4 +40,31 @@ describe('rules/require-spaces-in-function-declaration', function() {
             assert(checker.checkString('function abc() {}').isEmpty());
         });
     });
+
+
+    describe('es6', function() {
+        beforeEach(function() {
+            checker.configure({ esnext: true });
+        });
+
+        it('should report missing space before round brace in export default function', function() {
+            checker.configure({ requireSpacesInFunctionDeclaration: { beforeOpeningRoundBrace: true } });
+            assert(checker.checkString('export default function() {}').getErrorCount() === 1);
+        });
+
+        // it('should not report missing space before round brace in export default function', function() {
+        //     checker.configure({ requireSpacesInFunctionDeclaration: { beforeOpeningRoundBrace: true } });
+        //     assert(checker.checkString('export default function(){}').isEmpty());
+        // });
+
+        it('should report missing space before curly brace in export default function', function() {
+            checker.configure({ requireSpacesInFunctionDeclaration: { beforeOpeningCurlyBrace: true } });
+            assert(checker.checkString('export default function (){}').getErrorCount() === 1);
+        });
+
+        // it('should not report missing space before curly brace in export default function', function() {
+        //     checker.configure({ requireSpacesInFunctionDeclaration: { beforeOpeningCurlyBrace: true } });
+        //     assert(checker.checkString('export default function(){}').isEmpty());
+        // });
+    });
 });
