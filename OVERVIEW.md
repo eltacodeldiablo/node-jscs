@@ -299,7 +299,7 @@ Values: A single file extension or an Array of file extensions, beginning with a
 
 Set list of glob patterns for files which embeded JavaScript should be checked.
 
-Type: `Array` or `false`
+Type: `Array`
 
 Values: Array of file matching patterns
 
